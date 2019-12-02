@@ -14,7 +14,7 @@ if(localStorage.getItem('userName')){
 
 }
 
-//$(document).ready(function(){
+
    let socket = io();
 
   form.addEventListener('input', ()=>{
@@ -26,7 +26,6 @@ if(localStorage.getItem('userName')){
       userName = $('#name').val();
             localStorage.setItem('userName',userName);
 
-        // console.log('name:'+ userName);
         let text = $('#message').val();
         if(text!='')
        {
@@ -36,9 +35,6 @@ if(localStorage.getItem('userName')){
             };
             
             socket.emit('message', text)
-
-            // socket.emit('message',text);
-            // $('#message').val('');
        }
 
         return false;
@@ -67,8 +63,12 @@ if(localStorage.getItem('userName')){
               document.querySelector('#history').appendChild(chat);
         })
 
-    // socket.on('message',function(msg){
-    //     console.log( msg)
-    //     $('<li> ').text(msg.message).appendTo('#history');
-    // });
-    //})
+   form.addEventListener('input', ()=>{
+       console.log(`${userName} is typing...`);
+         socket.emit('typing',`${userName} is typing...`) 
+   });
+socket.on('s_typing',(data) =>{
+    console.log('just recieved a typing event from the server');
+    console.log(data);
+})
+
