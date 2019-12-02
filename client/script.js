@@ -68,6 +68,8 @@ if(localStorage.getItem('userName')){
          socket.emit('typing',`${userName} is typing...`) 
    });
 socket.on('s_typing',(data) =>{
+    //let type = 
+    document.getElementsByTagName('span')[0].innerHTML=`${data}`
     console.log('just recieved a typing event from the server');
     console.log(data);
 })
