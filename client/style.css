@@ -46,12 +46,12 @@ li div{
 
 }
 
-ul li:nth-child(odd){
+/* ul li:nth-child(odd){
     border-radius: 5px;
    text-align: right;
     justify-content: flex-end;
    
-}
+} */
 
 
 .me{
@@ -62,6 +62,7 @@ ul li:nth-child(odd){
 }
 
 .others{
+    justify-content: flex-start;
     padding: 10px;
     background-color: rgb(141, 185, 185); 
     align-items: flex-start;
