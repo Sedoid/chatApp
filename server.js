@@ -47,7 +47,7 @@ let express = require('express'),
         
 
 
-    server.listen(port,(error) => console.log('server up and running'));
+    server.listen(port,() => console.log('server up and running'));
 
 
 {
@@ -66,14 +66,6 @@ let express = require('express'),
 //         io.emit('message',msg);
 //     });
 // });
-
-
-
-
-
-
-
-
 
 
 

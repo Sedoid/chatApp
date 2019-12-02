@@ -1,4 +1,4 @@
-// alert('Hello from the JS file')
+
 let userName,
     form = document.querySelector('#message')
 
@@ -13,7 +13,6 @@ if(localStorage.getItem('userName')){
     userName = '';
 
 }
-    
 
 //$(document).ready(function(){
    let socket = io();
