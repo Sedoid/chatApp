@@ -15,7 +15,7 @@ main {
   padding: 20px;
 }
 
-ol {
+ul {
   list-style: none;
   margin-bottom: 20px;
   margin-top: 0;
@@ -49,7 +49,14 @@ button {
   text-transform: uppercase;
 }
 
-input {
+#message {
+  border: none;
+  border-radius: 3px;
+  font-size: 15px;
+  padding: 5px;
+}
+
+#name {
   border: none;
   border-radius: 3px;
   font-size: 15px;
