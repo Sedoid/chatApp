@@ -33,6 +33,7 @@ ul{
 li{
     display: flex;
     flex-direction: row;
+    margin: 50px 0;
   
 }
 li div{
@@ -51,10 +52,26 @@ ul li:nth-child(odd){
     justify-content: flex-end;
    
 }
+
+
+.me{
+    border-radius: 5px;
+   text-align: right;
+    justify-content: flex-end;
+    
+}
+
+.others{
+    padding: 10px;
+    background-color: rgb(141, 185, 185); 
+    align-items: flex-start;
+}
+
+/* 
 ul li:nth-child(odd)>div{
     padding: 10px;
    color: white;
-    /* align-items: flex-end;  */
+    align-items: flex-end; 
 }
 
 ul li:nth-child(odd)>div span{
@@ -63,10 +80,10 @@ ul li:nth-child(odd)>div span{
 
 ul li:nth-child(even)>div{
     padding: 10px;
-   background-color: rgb(141, 185, 185); 
+    background-color: rgb(141, 185, 185); 
     align-items: flex-start;
    
-}
+} */
 
 
 form{

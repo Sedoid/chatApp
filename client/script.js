@@ -56,15 +56,17 @@ if(localStorage.getItem('userName')){
 
               if( userName == data.senderName)
                    {
+                       chat.classList.add('me');
                        console.log('Message is being sent by thesame user');
                        console.log(data.senderName+ ' match '+ localStorage.getItem('userName'))
                        chat.style.justifyContent = 'flex-end';
                    } else{
+                       chat.classList.add('others')
                        console.log('Message is being sent by a difference user');
                    }
               document.querySelector('#history').appendChild(chat);
         })
-        
+
     // socket.on('message',function(msg){
     //     console.log( msg)
     //     $('<li> ').text(msg.message).appendTo('#history');
