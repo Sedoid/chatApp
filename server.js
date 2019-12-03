@@ -40,7 +40,7 @@ let express = require('express'),
             socket.on('typing', data => {
                 // io.broadcast.emit('typing',state)
                 console.log(data);
-               io.emit('s_typing', data)
+               socket.broadcast.emit('s_typing', data)
             })
 
  })

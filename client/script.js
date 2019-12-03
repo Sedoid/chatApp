@@ -17,10 +17,6 @@ if(localStorage.getItem('userName')){
 
    let socket = io();
 
-  form.addEventListener('input', ()=>{
-    socket.emit('typing', true)
-    })
-
     $('form').on('submit',function(e){
         e.preventDefault();
       userName = $('#name').val();
@@ -65,11 +61,19 @@ if(localStorage.getItem('userName')){
 
    form.addEventListener('input', ()=>{
        console.log(`${userName} is typing...`);
-         socket.emit('typing',`${userName} is typing...`) 
+         socket.emit('typing',`${userName} is typing...`);
+         
+        if(!form.value)
+        socket.emit('typing',false);
    });
 socket.on('s_typing',(data) =>{
     //let type = 
+    if(data)
     document.getElementsByTagName('span')[0].innerHTML=`${data}`
+    else
+    document.getElementsByTagName('span')[0].innerHTML=`Nobody is typing yet...`;
+
+
     console.log('just recieved a typing event from the server');
     console.log(data);
 })
