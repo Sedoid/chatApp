@@ -107,7 +107,8 @@ form label{
 }
 #name{
     border: 1px solid #ccc;
-    width: 20%;
+    /* width: 20%; */
+    width: 70px;
     padding:0 5px;
 }
 #send{
