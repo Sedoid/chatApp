@@ -22,7 +22,8 @@ $("form").on("submit", function (e) {
     if (text != "") {
         text = {
             senderName: userName,
-            message: text
+            message: text,
+            group : groups,
         };
 
         socket.emit("message", text);
@@ -30,7 +31,7 @@ $("form").on("submit", function (e) {
 
     return false;
 });
-
+/*  Sending a Message     */ 
 socket.on("message", data => {
     console.log(data);
 
@@ -56,12 +57,18 @@ socket.on("message", data => {
     document.querySelector("#history").appendChild(chat);
 });
 
+/* Listening  to a user typing events */ 
 form.addEventListener("input", () => {
     console.log(`${userName} is typing...`);
     socket.emit("typing", `${userName} is typing...`);
 
-    if (!form.value) socket.emit("typing", false);
+    if (!form.value){
+        console.log('Not typing');
+        socket.emit("typing", false);
+    } 
 });
+
+/* Reacting to a user typing events */ 
 socket.on("s_typing", data => {
     //let type =
     if (data) document.getElementsByTagName("span")[0].innerHTML = `${data}`;
@@ -72,4 +79,16 @@ socket.on("s_typing", data => {
 
     console.log("just recieved a typing event from the server");
     console.log(data);
+});
+
+let cooking = document.querySelector('.btn2'),
+    coding = document.querySelector('.btn1'),groups;
+
+cooking.addEventListener('click', function () {
+    groups = 'cooking'
+   
+})
+
+coding.addEventListener('click', function () {
+    groups = 'coding';
 });
