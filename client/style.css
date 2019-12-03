@@ -112,10 +112,10 @@ form label{
 }
 #send{
     border-radius: 3px;
-    padding: 7px  5px;
+    padding: 7px  15px;
     color: white;
-    width: 17%;
     background-color: rgb(43, 43, 44);
+    border-radius: 4px;
    
 }
 
@@ -123,10 +123,12 @@ section{
    /* position: fixed; */
     /* border-radius: 5px; */
     margin-left:-15px;
+    margin-right:-15px;
     padding: 10px;
     padding-bottom: 3px;
-    background-color:#ddd;
-    width: 103.7% !important;
+    /* background-color:#ddd; */
+    width: 100% !important;
+
 
 }
 
@@ -134,5 +136,8 @@ section{
     body > div{
         width: 97%;
         overflow: contain;
+    }
+    section{
+        width: 103.7% !important;
     }
 }
