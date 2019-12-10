@@ -1,5 +1,6 @@
 console.log('Service Worker Registered');
 const cacheName = 'chatCache-v1';
+
 const stuffsToCatch = [
     './index.html',
     './style.css',
@@ -8,9 +9,9 @@ const stuffsToCatch = [
     './notConnected.html'
 ]
 self.addEventListener('fetch', event => {
-    // console.log(event.request.url)
-    
+    let reader = new FileReader();
    event.respondWith(caches.match(event.request)
+
    .then( response => response || fetch(event.request))
         .catch(error => {
             if(event.request.mode == 'navigate'){
@@ -23,8 +24,26 @@ self.addEventListener('fetch', event => {
     
     fetch(event.request.url).then(
         response =>{
+            response.blob()
+            .then(
+                blob =>{
+                    console.log('A text blob');
+                    console.log(blob);
+                    let something = reader.readAsText(blob)
+                    console.log(something)
+                }
+            )
             // console.log('The response ****************************');
-            // console.log(response.body;
+            // console.log(response.body)
+            // console.log(response.body)
+            // let stream = response.body;
+            //     stream = stream.getReader();
+            //     console.log(stream)
+            // response.blob().
+            //     then(blob =>{
+            //         let objectURL = URL.createObjectURL(blob);
+            //         console.log(blob);
+            //     })
             // console.log('End of response *********************8***');
             return response;
         }
@@ -57,3 +76,23 @@ self.addEventListener('push',event =>{
             icon: 'http://mongoosejs.com/docs/images/mongoose.png'
         })
 })
+
+function Stream(){
+    return new ReadableStream({
+        start(controller){
+            return pump();
+            function pump(){
+                return ReadableStreamReader.read().then(({done,value})=>{
+                    // when no more data needs to be consumed, close the stream
+                    if(done){
+                        controller.close();
+                        return;
+                    }
+                    // Enqueue the next data chunk into our target stream
+                    controller.enqueue(value);
+                    return pump();
+                })
+            }
+        }
+    })
+}

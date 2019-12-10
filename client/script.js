@@ -1,4 +1,5 @@
 // Registering the service Workers
+localStorage.clear();
 const publicVapidKey= ' ';
 if(navigator.serviceWorker){
     //Register Service Workers and Subscribe to push Notifications anytime a users
@@ -116,17 +117,17 @@ socket.on("s_typing", data => {
     console.log(data);
 });
 
-let cooking = document.querySelector('.btn2'),
-    coding = document.querySelector('.btn1'),groups;
+// let cooking = document.querySelector('.btn2'),
+//     coding = document.querySelector('.btn1'),groups;
 
-cooking.addEventListener('click', function () {
-    groups = 'cooking'
+// cooking.addEventListener('click', function () {
+//     groups = 'cooking'
    
-})
+// })
 
-coding.addEventListener('click', function () {
-    groups = 'coding';
-});
+// coding.addEventListener('click', function () {
+//     groups = 'coding';
+// });
 
 function urlBase64ToUint8Array(base64String){
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
