@@ -8,9 +8,10 @@ let express = require('express'),
     path = require('path'),
     url = require('url');
 
-    app = express();
+    app = express();                         
 
     let server = http.createServer(app)
+
 
    app.use(express.static(path.join(__dirname,'client')));
 
