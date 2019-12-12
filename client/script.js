@@ -1,5 +1,4 @@
-// Registering the service Workers
-localStorage.clear();
+// Registering the service Worker
 const publicVapidKey= ' ';
 if(navigator.serviceWorker){
     //Register Service Workers and Subscribe to push Notifications anytime a users
@@ -8,6 +7,8 @@ if(navigator.serviceWorker){
     console.log('Registering the service workers');
     navigator.serviceWorker.register('./serviceWorker.js');
 }
+
+window.addEventListener('load',event =>{
 
 // localStorage.clear();
 let userName,
@@ -163,3 +164,7 @@ const subscribe = await registeration.pushManger.subscribe(
     console.log('Successfully send the subscribtion object to the server');
 
 }
+
+
+})
+
