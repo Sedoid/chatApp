@@ -71,9 +71,9 @@ socket.on("message", data => {
 
     let chat = document.createElement("li");
 
-    document.getElementsByTagName(
-        "span"
-    )[0].innerHTML = `Nobody is typing yet...`;
+    // document.getElementsByTagName(
+    //     "span"
+    // )[0].innerHTML = `Nobody is typing yet...`;
 
     chat.innerHTML = `<div> <span> ${data.senderName} </span> <br /> <br />  ${data.message} </div>`;
     let pattern = new RegExp(data.senderName);
@@ -106,9 +106,10 @@ form.addEventListener("input", () => {
 socket.on("s_typing", data => {
     //let type =
     let template = document.createElement('li');
-    template.innerHtml =   `${data}`;
+    template.innerHTML =   `${data}`;
     template.style.listStyleType = 'none';
-    if (data) document.getElementsByClassName("typing")[0].appendChild(template);
+    if (data) 
+    document.getElementsByClassName("typing")[0].appendChild(template);
     else
         document.getElementsByClassName(
             "typing"
