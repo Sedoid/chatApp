@@ -56,7 +56,7 @@ $("form").on("submit", function (e) {
         text = {
             senderName: userName,
             message: text,
-            group : groups,
+            group : false,
         };
       
         socket.emit("message", text);

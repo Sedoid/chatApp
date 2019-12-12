@@ -166,10 +166,11 @@ li div{
 }
 
 .me>div span{
-    color: orange;
+    color: rgb(31, 129, 31);
 }
 
 .others>div{
+    color: orange;
     padding: 10px;
     background-color: rgb(141, 185, 185); 
     align-items: flex-start;
@@ -192,6 +193,7 @@ section form{
     border: 1px solid rgb(71, 68, 68);
     background-color: rgba(0,0,0,1);
     height:4vh;
+    color: white;
 }
 #message::placeholder{
     font-family: sans-serif;
@@ -243,10 +245,6 @@ section{
     }
     section{
             width: 97vw;
-        /* padding-left:-5px; */
-
-      
-        /* width: 100% !important; */
     }
 
     form{
