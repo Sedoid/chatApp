@@ -163,18 +163,17 @@ li div{
 }
 
 .me>div span{
-    color: rgb(72, 150, 72);
+    color: rgb(64, 163, 64);
 }
 
 .others>div{
-    color: #ccc;
+    color: orange;
     padding: 10px;
-    background-color: rgb(17, 17, 17); 
+    background-color: rgb(18, 19, 19); 
     align-items: flex-start;
-}
-
-.others>div span{
-    color:orange;
+    border: 1px solid rgb(128, 125, 125);
+ 
+   
 }
 
 
@@ -253,6 +252,10 @@ section{
             width: 97vw;
     }
 
+    form{
+        /* display:none; */
+        /* border:2px solid goldenrod; */
+    }
     .messages::before{
         top:-2px;
         right:-2px;
