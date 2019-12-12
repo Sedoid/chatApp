@@ -81,7 +81,6 @@ body .messages{
     box-sizing: border-box;
     display: inherit;
     flex-direction: column;;
-    justify-content: space-between;
     padding: 1em 1em 0 1em;
     /* border:1px solid white; */
     width: 60%;
@@ -100,12 +99,15 @@ body .messages{
     bottom:-2px;
     background: linear-gradient(to right, rgb(245, 38, 11) , rgb(208, 255, 0));
     z-index: -1;
-    transform: skew(1deg,1deg);
+    transform: skew(1.5deg,1.5deg);
 }
 
 
 .user_Info{
     /* border:2px solid red; */
+    z-index: 5;
+    position: sticky;
+    top: 5px;
     display:flex;
     justify-content:space-between;
     transition-duration: 0.5s;
@@ -117,38 +119,33 @@ body .messages{
     margin-bottom: 5px;
     padding: 0px 5px;
 }
-.history{
-    width: 100%;
-    list-style-type: none;
+
+#history{
+
+    padding-top:10px;
+    /* background-color: red; */
+    max-height: 100%;
+    overflow: scroll;
+    z-index: 0;
+}
+#history li{
+    z-index: 0;
 }
 
-.history li{
-    display: flex;
-    flex-direction: row;
-    margin: 20px 0;
-  
-}
 li div{
     max-width: 50%;
     height: 100%;
-    background-color: teal;
+    background-color: rgba(43, 41, 41, 0.4);
     border-radius: 5px;
-  
-
-
+    border: 1px solid  rgba(0,0,0,1);
 }
 
 .me{
+    display: flex;
     border-radius: 5px;
    text-align: right;
-    justify-content: flex-end;
-   
-} 
- 
-.me{
-    border-radius: 5px;
-   text-align: right;
-    justify-content: flex-end;
+    justify-content: flex-end !important;
+    margin-bottom: 10px;
     
 }
 
@@ -166,15 +163,15 @@ li div{
 }
 
 .me>div span{
-    color: rgb(31, 129, 31);
+    color: rgb(72, 150, 72);
 }
 
 .others>div{
     color: orange;
     padding: 10px;
-    background-color: rgb(141, 185, 185); 
+    background-color: rgb(17, 17, 17); 
     align-items: flex-start;
-
+ 
    
 }
 
@@ -221,19 +218,26 @@ section form{
 
 section{
   box-sizing: border-box;
-
+    z-index: 1;
+    position: fixed;
+    bottom: 0;
 }
 
 @media screen and (max-width: 700px){
     body{
+        border-top:5px solid linear-gradient(rgb(50, 228, 14), rgb(255, 136, 0));
         /* align-items: center;; */
-        padding-top:3px;
+        padding-top:4px;
+        justify-content: flex-start;
+        overflow: hidden;
+       ;
     }
     body .messages{
         margin-top:0;
         width: 96.6vw;
         max-width: 97vw;
         height:93.2vh;
+        /* overflow: hidden; */
         /* max-height:92.5vh ; */
         margin:0;
         overflow: contain;
@@ -252,9 +256,9 @@ section{
         /* border:2px solid goldenrod; */
     }
     .messages::before{
-        top:-1px;
-        right:-1px;
-        left:-1px;
+        top:-2px;
+        right:-2px;
+        left:-2px;
         bottom:-1px;
         transform: skew(0.8deg,0.8deg);
         margin:0;

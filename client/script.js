@@ -48,10 +48,10 @@ let socket = io();
 
 $("form").on("submit", function (e) {
     e.preventDefault();
-    userName = $("#name").val();
+    userName =  $("#name").val() ;
     localStorage.setItem("userName", userName);
 
-    let text = $("#message").val();
+    let text = `<p>${$("#message").val()}</p>`;
     if (text != "") {
         text = {
             senderName: userName,
@@ -75,7 +75,7 @@ socket.on("message", data => {
     //     "span"
     // )[0].innerHTML = `Nobody is typing yet...`;
 
-    chat.innerHTML = `<div> <span> ${data.senderName} </span> <br /> <br />  ${data.message} </div>`;
+    chat.innerHTML = `<div> <span> ${data.senderName} </span> <br />  ${data.message} </div>`;
     let pattern = new RegExp(data.senderName);
     userName = localStorage.getItem("userName");
 
@@ -108,8 +108,10 @@ socket.on("s_typing", data => {
     let template = document.createElement('li');
     template.innerHTML =   `${data}`;
     template.style.listStyleType = 'none';
-    if (data) 
-    document.getElementsByClassName("typing")[0].appendChild(template);
+    if (data) {
+        document.getElementsByClassName("typing")[0].innerHTML = '';
+        document.getElementsByClassName("typing")[0].appendChild(template);
+    }
     else
         document.getElementsByClassName(
             "typing"
