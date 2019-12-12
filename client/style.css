@@ -167,12 +167,14 @@ li div{
 }
 
 .others>div{
-    color: orange;
+    color: #ccc;
     padding: 10px;
     background-color: rgb(17, 17, 17); 
     align-items: flex-start;
- 
-   
+}
+
+.others>div span{
+    color:orange;
 }
 
 
@@ -251,10 +253,6 @@ section{
             width: 97vw;
     }
 
-    form{
-        /* display:none; */
-        /* border:2px solid goldenrod; */
-    }
     .messages::before{
         top:-2px;
         right:-2px;
