@@ -2,21 +2,23 @@ console.log('Hello from my node script!buhahaha');
 
 let express = require('express'),
     socket = require('socket.io'),
-    http = require('http');
+    http = require('http'),
+    webpush = require('web-push');
+    bodyParser = require('body-parser');
     port = process.env.PORT || 4002,
     fs = require('fs'),
     path = require('path'),
     url = require('url');
+    publicVapidKey = 'BB1rbQuMQ1fyyiLqZhsy0CZq8H4VTSfzPNjQ9F84KyA04gph0p5iy_S4xYCRtyG75rts3AmlQ3tHUXIrhSqL80E',
+    privateVapidKey = 'bWhjJ1qsp-pdhSUfZE0weWOs9OHhQIlyZm4sqJy8c1Y';
 
     app = express();                         
 
-    let server = http.createServer(app)
-
-
+    let server = http.createServer(app);
+    // Handling the chat functionalies
    app.use(express.static(path.join(__dirname,'client')));
 
     let io = socket(server);
-
 
  let connectedUsers = [];
 
@@ -27,13 +29,11 @@ let express = require('express'),
             
             ++index;
             socket.username = 'bot';
-            // console.log(io.sockets.rooms)
-           
-            // console.log(io.sockets.rooms[0])
+
             connectedUsers.push(socket.id);
 
             let object = Object.values(io)
-            //    console.log( object[4]);
+
             socket.on('message',function(data){              
 
                 console.log('message is being sent');
@@ -53,8 +53,6 @@ let express = require('express'),
                
               
             })
-
-            
 
             socket.on('typing', data => {
                 // io.broadcast.emit('typing',state)
@@ -77,10 +75,23 @@ let express = require('express'),
         })
 
  })
-       
+  // Recieveing push subscription and sending push Notifications    
+  app.use(bodyParser.json()); 
+  app.post('./subscribe',(req,res) =>{
+    //Get the subscription object
+    const subscribtion = req.body;
+    res.status(201).json({});
+    //Create payLoad
+    const payLoad = JSON.stringify({title: "New Message"});
+    webpush.sendNotification(subscribtion,payLoad)
+    .catch(
+        error => {
+            console.log('Failed to send push Notification');
+            console.log(error);
+        }
+    )
 
-        
-
+    });
 
     server.listen(port,() => console.log('server up and running'));
 

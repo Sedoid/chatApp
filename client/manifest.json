@@ -1,0 +1,15 @@
+{
+    "name":"",
+    "short_name": "",
+    "start_url" : "",
+    "icons" : [
+       {
+        "src" : "",
+        "sizes": "",
+        "types": ""
+       } 
+    ],
+    "display" : "standalone",
+    "theme-color": "",
+    "color": ""
+}

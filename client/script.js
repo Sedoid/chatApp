@@ -1,5 +1,5 @@
 // Registering the service Worker
-const publicVapidKey= ' ';
+const publicVapidKey= 'BB1rbQuMQ1fyyiLqZhsy0CZq8H4VTSfzPNjQ9F84KyA04gph0p5iy_S4xYCRtyG75rts3AmlQ3tHUXIrhSqL80E';
 if(navigator.serviceWorker){
     //Register Service Workers and Subscribe to push Notifications anytime a users
     // recieves a message
@@ -89,6 +89,10 @@ socket.on("message", data => {
         console.log("Message is being sent by a difference user");
     }
     document.querySelector("#history").appendChild(chat);
+
+    if(!(data.senderName == userName)){
+        push_subscription(publicVapidKey);
+    }
 });
 
 /* Listening  to a user typing events */ 
@@ -121,17 +125,6 @@ socket.on("s_typing", data => {
     console.log(data);
 });
 
-// let cooking = document.querySelector('.btn2'),
-//     coding = document.querySelector('.btn1'),groups;
-
-// cooking.addEventListener('click', function () {
-//     groups = 'cooking'
-   
-// })
-
-// coding.addEventListener('click', function () {
-//     groups = 'coding';
-// });
 
 function urlBase64ToUint8Array(base64String){
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
