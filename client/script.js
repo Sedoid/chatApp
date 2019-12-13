@@ -7,7 +7,6 @@ if(navigator.serviceWorker){
     console.log('Service Workers are supported')
     console.log('Registering the service workers');
     serviceWorkerRegistration = navigator.serviceWorker.register('./serviceWorker.js',{scope:'/'});
-    console.log(serviceWorkerRegistration.pushManager.subscribe());
 }
 
 window.addEventListener('load',event =>{
