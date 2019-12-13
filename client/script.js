@@ -147,7 +147,7 @@ function urlBase64ToUint8Array(base64String){
 async function push_subscription(publicVapidKey){
 //Subscribing to push Notifications
     console.log('Registering push Notifications')
-const subscribe = await registration.pushManger.subscribe(
+const subscription = await registration.pushManger.subscribe(
     {
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
@@ -156,7 +156,7 @@ const subscribe = await registration.pushManger.subscribe(
     console.log('Sending push Notification to the server')
     await fetch('./subscribe',{
         method: 'POST',
-        body: JSON.stringify(subscribe),
+        body: JSON.stringify(subscription),
         headers:{
             'content-type': 'application/json',
         }
