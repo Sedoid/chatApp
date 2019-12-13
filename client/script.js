@@ -1,12 +1,21 @@
 // Registering the service Worker
 const publicVapidKey= 'BB1rbQuMQ1fyyiLqZhsy0CZq8H4VTSfzPNjQ9F84KyA04gph0p5iy_S4xYCRtyG75rts3AmlQ3tHUXIrhSqL80E';
-var   serviceWorkerRegistration;
+var   serviceWorkerRegistration,subscription;
 if(navigator.serviceWorker){
     //Register Service Workers and Subscribe to push Notifications anytime a users
     // recieves a message
     console.log('Service Workers are supported')
     console.log('Registering the service workers');
     serviceWorkerRegistration = navigator.serviceWorker.register('./serviceWorker.js',{scope:'/'});
+   //Subscribing to push Notifications
+   console.log('Registering push Notifications')
+   
+ subscription = await serviceWorkerRegistration.pushManager.subscribe({
+       userVisibleOnly: true,
+       applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
+   });
+   console.log('Registered Push Notifications')
+   console.log('Sending push Notification to the server')
 }
 
 window.addEventListener('load',event =>{
@@ -93,7 +102,7 @@ socket.on("message", data => {
     document.querySelector("#history").appendChild(chat);
 
     if(!(data.senderName == userName)){
-        push_subscription(publicVapidKey,serviceWorkerRegistration);
+        push_subscription(subscription);
         console.log('they should be registering push notifications now');
     }else{
         console.log('resgistered push notification')
@@ -144,17 +153,8 @@ function urlBase64ToUint8Array(base64String){
     return outputArray;
 }
 
-async function push_subscription(publicVapidKey,registration){
-//Subscribing to push Notifications
-    console.log('Registering push Notifications')
-    console.log(Object.keys(registration));
-    console.log(registration.pushManager())
-const subscription = await registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
-    });
-    console.log('Registered Push Notifications')
-    console.log('Sending push Notification to the server')
+async function push_subscription(subscription){
+
     await fetch('./subscribe',{
         method: 'POST',
         body: JSON.stringify(subscription),
