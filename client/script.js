@@ -1,11 +1,12 @@
 // Registering the service Worker
 const publicVapidKey= 'BB1rbQuMQ1fyyiLqZhsy0CZq8H4VTSfzPNjQ9F84KyA04gph0p5iy_S4xYCRtyG75rts3AmlQ3tHUXIrhSqL80E';
+ let   registration;
 if(navigator.serviceWorker){
     //Register Service Workers and Subscribe to push Notifications anytime a users
     // recieves a message
     console.log('Service Workers are supported')
     console.log('Registering the service workers');
-    navigator.serviceWorker.register('./serviceWorker.js');
+    registration = navigator.serviceWorker.register('./serviceWorker.js');
 }
 
 window.addEventListener('load',event =>{
@@ -65,7 +66,8 @@ $("form").on("submit", function (e) {
 });
 /*  Sending a Message     */ 
 socket.on("message", data => {
-    console.log(data);
+    // console.log(data);
+    document.querySelector('.typing').innerHTML = "None is typing yet";
     document.querySelector('#message').value = '';
 // Subscribing for a push notifications
 
@@ -92,7 +94,7 @@ socket.on("message", data => {
 
     if(!(data.senderName == userName)){
         push_subscription(publicVapidKey);
-        console.log('they should be sending push notifications now');
+        console.log('they should be registering push notifications now');
     }else{
         console.log('resgistered push notification')
     }
@@ -145,7 +147,6 @@ function urlBase64ToUint8Array(base64String){
 async function push_subscription(publicVapidKey){
 //Subscribing to push Notifications
     console.log('Registering push Notifications')
-    console.log(registration());
 const subscribe = await registration.pushManger.subscribe(
     {
         userVisibleOnly: true,
