@@ -105,7 +105,7 @@ body .messages{
 
 .user_Info{
     /* border:2px solid red; */
-    z-index: 5;
+    /* z-index: 5; */
     position: sticky;
     top: 5px;
     display:flex;
@@ -130,21 +130,37 @@ body .messages{
     margin-right: 0.5em;
 }
 
-#history{
-   
+#history{ 
     background-color: rgb(26, 25, 25);
     padding-top:10px;
     /* background-color: red; */
     max-height: 100%;
-    overflow: scroll;
+    /* overflow: scroll; */
+    overflow-y: scroll;
     z-index: 0;
 }
 #history li{
     z-index: 0;
 }
+#history::-webkit-scrollbar{
+    border-radius: 5px;
+    width: 4px;
+}
+#history::-webkit-scrollbar-track{
+    background-color:  rgb(26, 25, 25);
+
+}
+
+textarea::-webkit-scrollbar{
+    border-radius: 5px;
+    width: 5px;
+}
+textarea::-webkit-scrollbar-track{
+    background-color: rgb(48, 47, 47);
+}
 
 li div{
-    max-width: 50%;
+    max-width: 70%;
     height: 100%;
     background-color: rgba(43, 41, 41, 0.4);
     border-radius: 5px;
@@ -178,21 +194,21 @@ li div{
 }
 
 .others>div{
-    color: orange;
+    color: #ccc;
     padding: 10px;
     background-color: rgb(18, 19, 19); 
     align-items: flex-start;
     border: 1px solid rgb(128, 125, 125);
- 
-   
+  
 }
 
+.others>div span{
+    color:orange
+}
 
 section form{
-     /* margin-left: -10px; */
      color: #ccc;
      display: flex;
-     /* justify-content: space-between; */
 }
 
 #message{
@@ -234,23 +250,21 @@ section{
     position: fixed;
     bottom: 0;
 }
-
+ 
 @media screen and (max-width: 700px){
     body{
         border-top:5px solid linear-gradient(rgb(50, 228, 14), rgb(255, 136, 0));
-        /* align-items: center;; */
         padding-top:4px;
         justify-content: flex-start;
         overflow: hidden;
        ;
     }
+   
     body .messages{
         margin-top:0;
         width: 96.6vw;
         max-width: 97vw;
         height:93.2vh;
-        /* overflow: hidden; */
-        /* max-height:92.5vh ; */
         margin:0;
         overflow: contain;
         padding-top:5px;
@@ -263,10 +277,6 @@ section{
             width: 97vw;
     }
 
-    form{
-        /* display:none; */
-        /* border:2px solid goldenrod; */
-    }
     .messages::before{
         top:-2px;
         right:-2px;
