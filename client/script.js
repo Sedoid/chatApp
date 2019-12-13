@@ -92,6 +92,7 @@ socket.on("message", data => {
 
     if(!(data.senderName == userName)){
         push_subscription(publicVapidKey);
+        console.log('they should be sending push notifications now');
     }else{
         console.log('resgistered push notification')
     }
@@ -144,6 +145,7 @@ function urlBase64ToUint8Array(base64String){
 async function push_subscription(publicVapidKey){
 //Subscribing to push Notifications
     console.log('Registering push Notifications')
+    console.log(registration());
 const subscribe = await registration.pushManger.subscribe(
     {
         userVisibleOnly: true,
