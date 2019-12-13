@@ -49,9 +49,7 @@ let socket = io();
 $("form").on("submit", function (e) {
     e.preventDefault();
     userName =  $("#name").val() ;
-    document.querySelector('#name').value = '';
     localStorage.setItem("userName", userName);
-
     let text = `<p>${$("#message").val()}</p>`;
     if (text != "") {
         text = {
@@ -68,6 +66,7 @@ $("form").on("submit", function (e) {
 /*  Sending a Message     */ 
 socket.on("message", data => {
     console.log(data);
+    document.querySelector('#message').value = '';
 // Subscribing for a push notifications
 
     let chat = document.createElement("li");
