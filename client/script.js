@@ -10,7 +10,7 @@ if(navigator.serviceWorker){
    //Subscribing to push Notifications
    console.log('Registering push Notifications')
    
- subscription = await serviceWorkerRegistration.pushManager.subscribe({
+ subscription =  serviceWorkerRegistration.pushManager.subscribe({
        userVisibleOnly: true,
        applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
    });
