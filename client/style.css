@@ -194,6 +194,7 @@ li div{
 }
 
 .others>div{
+    width: auto;
     color: #ccc;
     padding: 10px;
     background-color: rgb(18, 19, 19); 
