@@ -132,8 +132,8 @@ socket.on("s_typing", data => {
             "typing"
         )[0].innerHTML = `Nobody is typing yet...`;
 
-    console.log("just recieved a typing event from the server");
-    console.log(data);
+    // console.log("just recieved a typing event from the server");
+    // console.log(data);
 });
 
 

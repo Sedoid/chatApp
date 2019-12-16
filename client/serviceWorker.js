@@ -56,6 +56,6 @@ self.addEventListener('push',event =>{
     const data = event.data.json();
     console.log('push received');
     self.registration.showNotification(data.title,{
-        body: 'This is your message dude, I hopen you enjoy it',
+        body: 'This is your message dude, I hope you enjoy it',
     })
 })

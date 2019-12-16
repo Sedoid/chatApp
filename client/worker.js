@@ -5,8 +5,8 @@ self.addEventListener('push', e=>{
     const data = e.data.json();
     console.log(data);
     console.log('Push Recieved....');
-    self.registration.ServiceWorkerRegistration.title(data.name,{
+    self.registration.ServiceWorkerRegistration.title(data.title,{
         body: "Notified by Traversy Media!",
-        icon: "http://image.ibb.co/frYoFd/tmlogo.png"
+        icon: "http://mongoosejs.com/docs/images/mongoose5_62x30_transparent.png"
     });
 });

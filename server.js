@@ -25,12 +25,26 @@ let express = require('express'),
  io.sockets.rooms.push('cooking');
  io.sockets.rooms.push('coding');
         io.on('connection',function(socket){
-            
+            let address = socket.handshake.address;
+            console.log("New connection from" + address.address + ';' + address.port)
             ++index;
             socket.username = 'bot';
 
-            connectedUsers.push(socket.id);
+            if(!connectedUsers.indexOf(socket.id,0))
+               {
+                   console.log('new user registered');
+                    connectedUsers.push(socket.id);
+                    console.log('Connected Users *********************');
+                    console.log(connectedUsers);
+                   console.log('Connected Users *********************');
+               }  
+            else 
+               {
+                   console.log('Connected Users *********************');
+                    console.log(connectedUsers);
+                   console.log('Connected Users *********************');
 
+               } 
             let object = Object.values(io)
 
             socket.on('message',function(data){              
@@ -80,9 +94,14 @@ let express = require('express'),
     //Get the subscription object
 
     const subscribtion = req.body;
+    console.log('************** clients subscription Message  **************')
+    console.log(subscribtion)
+    console.log('************** clients subscription Message  **************')
     res.status(201).json({});
+
     //Create payLoad
     const payLoad = JSON.stringify({title: "New Message"});
+    console.log('About to send push Notifications');
     webpush.sendNotification(subscribtion,payLoad)
     .catch(
         error => {
