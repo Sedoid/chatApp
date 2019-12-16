@@ -1,5 +1,5 @@
 // Registering the service Worker
-const publicVapidKey= 'BM7bWQLvt3RAVdqOGiT8PdnJ55qtc0rXWzp6VqrWMb4GmnoblXLNQOXMC6woMKIWSqrQKLJHsB4eDpLIXWoBktE';
+const publicVapidKey= 'BBXug78kEdM4PainkvGw9X52kH3P5DuQqYLILV50tR4QgykyFgbLtKPcRnZR4ydKYwBN9oxPXlbj-qqDP2F2Jy4';
 var   serviceWorkerRegistration;
 if(navigator.serviceWorker){
     //Register Service Workers and Subscribe to push Notifications anytime a users

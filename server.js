@@ -9,7 +9,7 @@ let express = require('express'),
     fs = require('fs'),
     path = require('path'),
     url = require('url');
-    privateVapidKey = 'owHC23i8tPtgJ-BrfvjB6Ja_BS0A2x7QF58Mjz3gGYA';
+    privateVapidKey = 'iqMUW0UfRyQ_UZ70svJLNw9FKdAdSh5cZEeus9DrBM0';
 
     app = express();                         
 
