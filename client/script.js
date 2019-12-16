@@ -6,7 +6,7 @@ if(navigator.serviceWorker){
     // recieves a message
     console.log('Service Workers are supported')
     console.log('Registering the service workers');
-    serviceWorkerRegistration = navigator.serviceWorker.register('./serviceWorker.js',{scope:'/'});
+    serviceWorkerRegistration = navigator.serviceWorker.register('./serviceWorker.js',{scope:'/client/'});
 }
 
 window.addEventListener('load',event =>{
@@ -146,12 +146,19 @@ function urlBase64ToUint8Array(base64String){
 
 async function push_subscription(publicVapidKey,registration){
 //Subscribing to push Notifications
+var subscribtion;
     console.log('Registering push Notifications')
     console.log(Object.keys(registration));
     console.log(registration.pushManager())
-const subscription = await registration.pushManager.subscribe({
+    registration
+    .then(
+        result =>{
+             subscription =  result.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
+        }
+    )
+
     });
     console.log('Registered Push Notifications')
     console.log('Sending push Notification to the server')
