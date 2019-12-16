@@ -146,7 +146,7 @@ function urlBase64ToUint8Array(base64String){
 
 async function push_subscription(publicVapidKey,registration){
 //Subscribing to push Notifications
-var subscribtion;
+var subscription;
     console.log('Registering push Notifications')
     registration
     .then(
