@@ -1,16 +1,16 @@
 // Registering the service Worker
-const publicVapidKey= 'BB1rbQuMQ1fyyiLqZhsy0CZq8H4VTSfzPNjQ9F84KyA04gph0p5iy_S4xYCRtyG75rts3AmlQ3tHUXIrhSqL80E';
+const publicVapidKey= 'BM7bWQLvt3RAVdqOGiT8PdnJ55qtc0rXWzp6VqrWMb4GmnoblXLNQOXMC6woMKIWSqrQKLJHsB4eDpLIXWoBktE';
 var   serviceWorkerRegistration;
 if(navigator.serviceWorker){
     //Register Service Workers and Subscribe to push Notifications anytime a users
     // recieves a message
     console.log('Service Workers are supported')
     console.log('Registering the service workers');
-    serviceWorkerRegistration = navigator.serviceWorker.register('./serviceWorker.js',{scope:'/client/'});
+    serviceWorkerRegistration = navigator.serviceWorker.register('./serviceWorker.js',{scope:'/'});
 }
 
 window.addEventListener('load',event =>{
-
+  
 // localStorage.clear();
 let userName,
     form = document.querySelector("#message"),
@@ -93,7 +93,13 @@ socket.on("message", data => {
     document.querySelector("#history").appendChild(chat);
 
     if(!(data.senderName == userName)){
-        push_subscription(publicVapidKey,serviceWorkerRegistration);
+
+        serviceWorkerRegistration
+        .then(
+            result =>{
+                push_subscription(publicVapidKey,result);
+            }
+        )
         console.log('they should be registering push notifications now');
     }else{
         console.log('resgistered push notification')
@@ -147,20 +153,17 @@ function urlBase64ToUint8Array(base64String){
 async function push_subscription(publicVapidKey,registration){
 //Subscribing to push Notifications
 var subscription;
+console.log(publicVapidKey)
     console.log('Registering push Notifications')
-    registration
-    .then(
-        result =>{
-             subscription =  result.pushManager.subscribe({
+   
+        subscription = await  registration.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
-        }
-    )
-
-    });
+        });
+    console.log(subscription)
     console.log('Registered Push Notifications')
     console.log('Sending push Notification to the server')
-    await fetch('./subscribe',{
+    await fetch('/subscribe',{
         method: 'POST',
         body: JSON.stringify(subscription),
         headers:{

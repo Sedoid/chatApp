@@ -9,8 +9,7 @@ let express = require('express'),
     fs = require('fs'),
     path = require('path'),
     url = require('url');
-    publicVapidKey = 'BB1rbQuMQ1fyyiLqZhsy0CZq8H4VTSfzPNjQ9F84KyA04gph0p5iy_S4xYCRtyG75rts3AmlQ3tHUXIrhSqL80E',
-    privateVapidKey = 'bWhjJ1qsp-pdhSUfZE0weWOs9OHhQIlyZm4sqJy8c1Y';
+    privateVapidKey = 'owHC23i8tPtgJ-BrfvjB6Ja_BS0A2x7QF58Mjz3gGYA';
 
     app = express();                         
 
@@ -77,8 +76,9 @@ let express = require('express'),
  })
   // Recieveing push subscription and sending push Notifications    
   app.use(bodyParser.json()); 
-  app.post('./subscribe',(req,res) =>{
+  app.post('/subscribe',(req,res) =>{
     //Get the subscription object
+
     const subscribtion = req.body;
     res.status(201).json({});
     //Create payLoad
