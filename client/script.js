@@ -148,8 +148,6 @@ async function push_subscription(publicVapidKey,registration){
 //Subscribing to push Notifications
 var subscribtion;
     console.log('Registering push Notifications')
-    console.log(Object.keys(registration));
-    console.log(registration.pushManager())
     registration
     .then(
         result =>{
