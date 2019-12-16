@@ -10,6 +10,7 @@ let express = require('express'),
     path = require('path'),
     url = require('url');
     privateVapidKey = 'iqMUW0UfRyQ_UZ70svJLNw9FKdAdSh5cZEeus9DrBM0';
+    publicVapidKey= 'BBXug78kEdM4PainkvGw9X52kH3P5DuQqYLILV50tR4QgykyFgbLtKPcRnZR4ydKYwBN9oxPXlbj-qqDP2F2Jy4';
 
     app = express();                         
 
@@ -30,7 +31,7 @@ let express = require('express'),
             ++index;
             socket.username = 'bot';
 
-            if(!connectedUsers.indexOf(socket.id,0))
+            if(!connectedUsers.indexOf(socket.id))
                {
                    console.log('new user registered');
                     connectedUsers.push(socket.id);
@@ -41,7 +42,7 @@ let express = require('express'),
             else 
                {
                    console.log('Connected Users *********************');
-                    console.log(connectedUsers);
+                    console.log(socket.id);
                    console.log('Connected Users *********************');
 
                } 
@@ -90,6 +91,12 @@ let express = require('express'),
  })
   // Recieveing push subscription and sending push Notifications    
   app.use(bodyParser.json()); 
+  webpush.setVapidDetails(
+    "mailto:karlsedoide@gmail.com",
+    publicVapidKey,
+    privateVapidKey
+  );
+  
   app.post('/subscribe',(req,res) =>{
     //Get the subscription object
 
